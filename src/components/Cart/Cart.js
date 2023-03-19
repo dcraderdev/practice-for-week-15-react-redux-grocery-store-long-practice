@@ -1,9 +1,16 @@
 import CartItem from './CartItem';
 import './Cart.css';
 
+import {useSelector} from 'react-redux'
+
 function Cart() {
-  const cart = {};
-  const produce = {};
+
+  const cart = useSelector(state=>state.cart)
+  const produce = useSelector(state=>state.produce)
+
+  console.log(cart);
+  console.log(produce);
+
 
   const cartItems = Object.values(cart)
     .map(item => {
@@ -12,6 +19,14 @@ function Cart() {
         ...produce[item.id]
       };
     });
+
+
+
+console.log('-=-=-=-=-=');
+console.log(cartItems);
+console.log('-=-=-=-=-=');
+
+
 
   if (!cartItems || !cartItems.length) return (
     <div className="cart">
@@ -26,6 +41,8 @@ function Cart() {
       `${cartItems.map(item => `${item.count} of ${item.name}`).join('\n')}`
     );
   }
+
+  console.log('---->',cartItems);
 
   return (
     <div className="cart">

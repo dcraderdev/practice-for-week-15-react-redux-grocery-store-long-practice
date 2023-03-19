@@ -1,7 +1,22 @@
 import { useState, useEffect } from 'react';
+import {useSelector} from 'react-redux'
+
 
 function CartItem({ item }) {
   const [count, setCount] = useState(item.count);
+  const produce = useSelector(state=>state.produce)
+
+  
+  console.log(produce);
+
+  
+  let vals = Object.values(produce)
+  let newItem = vals.find((produceItem) => produceItem.id === item.id);
+  console.log(vals);
+
+
+  // console.log(item);
+  // console.log(item.name);
 
   useEffect(() => {
     setCount(item.count);
